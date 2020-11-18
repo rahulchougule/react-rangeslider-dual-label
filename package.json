@@ -35,7 +35,7 @@
     "lib",
     "umd"
   ],
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+ 
   "keywords": [
     "rangeslider",
     "range-slider",
