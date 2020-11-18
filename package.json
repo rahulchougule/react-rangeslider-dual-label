@@ -1,5 +1,5 @@
 {
-  "name": "react-rangeslider-dual-lable",
+  "name": "react-rangeslider-top-bottom-labels",
   "version": "3.0.0",
   "description": "A lightweight react component that acts as a HTML5 input range slider polyfill",
   "main": "lib/index.js",
