@@ -4,25 +4,25 @@ import Codeblock from "./Codeblock";
 class Usage extends Component {
   render() {
     const text = `// Using an ES6 transpiler like Babel
-import Slider from 'react-rangeslider-dual-label'
+import Slider from 'react-rangeslider'
 
 // To include the default styles
-import 'react-rangeslider-dual-label/lib/index.css'
+import 'react-rangeslider/lib/index.css'
 
 // Not using an ES6 transpiler
-var Slider = require('react-rangeslider-dual-label')
+var Slider = require('react-rangeslider')
 `;
 
-    const umdJs = `<script src="https://unpkg.com/react-rangeslider-dual-label/umd/rangeslider.min.js"></script>`;
-    const umdCss = `<link rel="stylesheet" href="https://unpkg.com/react-rangeslider-dual-label/umd/rangeslider.min.css" />`;
+    const umdJs = `<script src="https://unpkg.com/react-rangeslider/umd/rangeslider.min.js"></script>`;
+    const umdCss = `<link rel="stylesheet" href="https://unpkg.com/react-rangeslider/umd/rangeslider.min.css" />`;
 
     return (
       <section className="block">
         <h2>Usage</h2>
         <p>
-          react-rangeslider-dual-label is bundled with a single slider
-          component. By default, basic styles are applied, but can be overridden
-          depending on your design requirements.
+          React-Rangeslider is bundled with a single slider component. By
+          default, basic styles are applied, but can be overridden depending on
+          your design requirements.
         </p>
         <p>
           With a module bundler like webpack that supports either CommonJS or
@@ -31,7 +31,7 @@ var Slider = require('react-rangeslider-dual-label')
         <Codeblock>{text}</Codeblock>
         <p>
           The UMD build is also available on{" "}
-          <a href="https://unpkg.com/react-rangeslider-dual-label/umd/ReactRangeslider.min.js">
+          <a href="https://unpkg.com/react-rangeslider/umd/ReactRangeslider.min.js">
             unpkg:
           </a>
         </p>

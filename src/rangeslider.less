@@ -45,7 +45,7 @@
       line-height: 100%;
     }
     &:after {
-      content: ' ';
+      content: " ";
       position: absolute;
       width: 0;
       height: 0;
@@ -57,13 +57,16 @@
 * Rangeslider - Horizontal slider
 */
 .rangeslider-horizontal {
-  height: 12px;
-  border-radius: 10px;
+  height: 5px;
+  border-radius: 50px;
+  box-shadow: 0 0 0 0;
+  transition: all 0.1s;
   .rangeslider__fill {
     height: 100%;
-    background-color: #7cb342;
-    border-radius: 10px;
+    background-color: #87CEFA;
+    border-radius: 8px;
     top: 0;
+    box-shadow: 0 0 0 0;;
   }
   .rangeslider__handle {
     width: 30px;
@@ -72,7 +75,7 @@
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
     &:after {
-      content: ' ';
+      content: " ";
       position: absolute;
       width: 16px;
       height: 16px;
@@ -175,7 +178,52 @@
       transform: translate3d(0, -50%, 0);
 
       &::before {
-        content: '';
+        content: "";
+        width: 10px;
+        height: 2px;
+        background: black;
+        position: absolute;
+        left: -14px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: -1;
+      }
+    }
+  }
+
+  .rangeslider__label-item {
+    position: absolute;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    top: 10px;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/**
+* Rangeslider - Top Labels
+*/
+
+.rangeslider__labels_top {
+  position: relative;
+  top: -45px;
+  .rangeslider-vertical & {
+    position: relative;
+    list-style-type: none;
+    margin: 0 0 0 24px;
+    padding: 0;
+    text-align: left;
+    width: 250px;
+    height: 100%;
+    left: 10px;
+
+    .rangeslider__label-item {
+      position: absolute;
+      transform: translate3d(0, -50%, 0);
+
+      &::before {
+        content: "";
         width: 10px;
         height: 2px;
         background: black;

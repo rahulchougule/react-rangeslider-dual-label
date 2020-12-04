@@ -10,10 +10,6 @@ function Footer() {
             MIT License
           </a>
         </p>
-        <p>
-          Built with <span className="hearts">♥</span> • Maintained by{" "}
-          <a href="http://github.com/rahulchougule">rahulchougule</a>
-        </p>
       </section>
     </footer>
   );

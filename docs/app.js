@@ -1,28 +1,28 @@
-import React from 'react'
-import Header from './components/Header'
-import Features from './components/Features'
-import Usage from './components/Usage'
-import Install from './components/Install'
-import Examples from './components/Examples'
-import Footer from './components/Footer'
-import '../src/rangeslider.less'
-import './app.less'
+import React from "react";
+import Header from "./components/Header";
+// import Features from './components/Features'
+// import Usage from './components/Usage'
+// import Install from './components/Install'
+import Examples from "./components/Examples";
+import Footer from "./components/Footer";
+import "../src/rangeslider.less";
+import "./app.less";
 
-function App () {
+function App() {
   return (
-    <div className='wrapper'>
-      <header>
+    <div className="wrapper">
+      {/* <header>
         <Header />
-      </header>
+      </header> */}
       <section>
-        <Features />
+        {/* <Features />
         <Install />
-        <Usage />
+        <Usage /> */}
         <Examples />
         <Footer />
       </section>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

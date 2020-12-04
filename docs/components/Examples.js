@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import { Horizontal, Negative, Float, Labels, Orientation } from './sliders'
-import Demo from './Demo'
-import Codeblock from './Codeblock'
+import React, { Component } from "react";
+import { Horizontal, Negative, Float, Labels, Orientation } from "./sliders";
+import Demo from "./Demo";
+import Codeblock from "./Codeblock";
 
-import horizontalExample from '!raw!./sliders/horizontal'
-import negativeExample from '!raw!./sliders/negative'
-import floatExample from '!raw!./sliders/float'
-import labelsExample from '!raw!./sliders/labels'
-import orientationExample from '!raw!./sliders/orientation'
+import horizontalExample from "!raw!./sliders/horizontal";
+import negativeExample from "!raw!./sliders/negative";
+import floatExample from "!raw!./sliders/float";
+import labelsExample from "!raw!./sliders/labels";
+import orientationExample from "!raw!./sliders/orientation";
 
 class Examples extends Component {
-  render () {
+  render() {
     return (
-      <section className='block'>
+      <section className="block">
         <h2>Examples</h2>
-        <Demo title='Basic Slider'>
+        {/* <Demo title='Basic Slider'>
           <Horizontal />
           <Codeblock>
             {horizontalExample}
@@ -31,22 +31,18 @@ class Examples extends Component {
           <Codeblock>
             {floatExample}
           </Codeblock>
-        </Demo>
-        <Demo title='Custom Labels &amp; Formatting'>
+        </Demo> */}
+        <Demo title="Custom Labels &amp; Formatting">
           <Labels />
-          <Codeblock>
-            {labelsExample}
-          </Codeblock>
+          <Codeblock>{labelsExample}</Codeblock>
         </Demo>
-        <Demo title='Orientation &amp; Custom Styles'>
+        {/* <Demo title="Orientation &amp; Custom Styles">
           <Orientation />
-          <Codeblock>
-            {orientationExample}
-          </Codeblock>
-        </Demo>
+          <Codeblock>{orientationExample}</Codeblock>
+        </Demo> */}
       </section>
-    )
+    );
   }
 }
 
-export default Examples
+export default Examples;

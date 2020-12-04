@@ -45,9 +45,9 @@ class Slider extends Component {
 
   static defaultProps = {
     min: 0,
-    max: 100,
+    max: 200,
     step: 1,
-    value: 0,
+    value: 100,
     orientation: "horizontal",
     tooltip: true,
     reverse: false,
@@ -62,6 +62,7 @@ class Slider extends Component {
       active: false,
       limit: 0,
       grab: 0,
+      currentValue : 100
     };
   }
 
@@ -86,6 +87,7 @@ class Slider extends Component {
    * @return {void}
    */
   handleUpdate = () => {
+    console.log("In handleUpdate")
     if (!this.slider) {
       // for shallow rendering
       return;
@@ -106,6 +108,7 @@ class Slider extends Component {
    * @return {void}
    */
   handleStart = (e) => {
+    console.log("In handleStart")
     const { onChangeStart } = this.props;
     document.addEventListener("mousemove", this.handleDrag);
     document.addEventListener("mouseup", this.handleEnd);
@@ -125,8 +128,10 @@ class Slider extends Component {
    * @return {void}
    */
   handleDrag = (e) => {
+    console.log("In handleDrag")
     e.stopPropagation();
     const { onChange } = this.props;
+    console.log(onChange)
     const {
       target: { className, classList, dataset },
     } = e;
@@ -141,7 +146,7 @@ class Slider extends Component {
     ) {
       value = parseFloat(dataset.value);
     }
-
+console.log("Value",value)
     onChange && onChange(value, e);
   };
 
@@ -171,7 +176,8 @@ class Slider extends Component {
   handleKeyDown = (e) => {
     e.preventDefault();
     const { keyCode } = e;
-    const { value, min, max, step, onChange } = this.props;
+    const { onChange } = this.props;
+    let value = 100, min=0, max=200, step=1
     let sliderValue;
 
     switch (keyCode) {
@@ -195,7 +201,8 @@ class Slider extends Component {
    */
   getPositionFromValue = (value) => {
     const { limit } = this.state;
-    const { min, max } = this.props;
+    // const { min, max } = this.props;
+    let min = 0,max= 200
     const diffMaxMin = max - min;
     const diffValMin = value - min;
     const percentage = diffValMin / diffMaxMin;
@@ -211,11 +218,20 @@ class Slider extends Component {
    */
   getValueFromPosition = (pos) => {
     const { limit } = this.state;
-    const { orientation, min, max, step } = this.props;
+    const { orientation} = this.props;
+    let min = 0
+    let max = 200
+    let step =1
+    console.log("in",this.props)
     const percentage = clamp(pos, 0, limit) / (limit || 1);
+    console.log(percentage)
     const baseVal = step * Math.round((percentage * (max - min)) / step);
+    console.log(baseVal)
     const value = orientation === "horizontal" ? baseVal + min : max - baseVal;
-
+    this.setState(
+      {
+        currentValue: value,
+      })
     return clamp(value, min, max);
   };
 
@@ -225,9 +241,10 @@ class Slider extends Component {
    * @return {number} value - Slider value
    */
   position = (e) => {
+    console.log('postion')
     const { grab } = this.state;
     const { orientation, reverse } = this.props;
-
+    console.log('OR', orientation, reverse)
     const node = this.slider;
     const coordinateStyle = constants.orientation[orientation].coordinate;
     const directionStyle = reverse
@@ -290,17 +307,19 @@ class Slider extends Component {
 
   render() {
     const {
-      value,
-      orientation,
       className,
-      tooltip,
-      reverse,
-      labels,
-      min,
-      max,
-      handleLabel,
-      bottomLables,
     } = this.props;
+    console.log(this.props)
+let handleLabel= 100
+let labels = {100: "100C", 150: "150C", 200: "200C"}
+let labels1 = {100: "100M", 150: "150M", 200: "200M"}
+let max = 200
+let min = 0
+let orientation = "horizontal"
+let reverse = false
+let step = 1
+let tooltip= true
+let value= 100
     const { active } = this.state;
     const dimension = constants.orientation[orientation].dimension;
     const direction = reverse
@@ -312,10 +331,10 @@ class Slider extends Component {
     const handleStyle = { [direction]: `${coords.handle}px` };
     let showTooltip = tooltip && active;
 
-    let bottomLabelItems = [];
     let labelItems = [];
+    let labelItems1 = [];
     let labelKeys = Object.keys(labels);
-    let bottomLabelKeys = Object.keys(bottomLables);
+    let labelKeys1 = Object.keys(labels1);
 
     if (labelKeys.length > 0) {
       labelKeys = labelKeys.sort((a, b) => (reverse ? a - b : b - a));
@@ -335,22 +354,20 @@ class Slider extends Component {
             onTouchEnd={this.handleEnd}
             style={labelStyle}
           >
-            {this.props.labels[key]}
+            {labels[key]}
           </li>
         );
       }
     }
-    if (bottomLabelKeys.length > 0) {
-      bottomLabelKeys = bottomLabelKeys.sort((a, b) =>
-        reverse ? a - b : b - a
-      );
+    if (labelKeys1.length > 0) {
+      labelKeys1 = labelKeys1.sort((a, b) => (reverse ? a - b : b - a));
 
-      for (let key of bottomLabelKeys) {
+      for (let key of labelKeys1) {
         const labelPosition = this.getPositionFromValue(key);
         const labelCoords = this.coordinates(labelPosition);
         const labelStyle = { [direction]: `${labelCoords.label}px` };
 
-        bottomLabelItems.push(
+        labelItems1.push(
           <li
             key={key}
             className={cx("rangeslider__label-item")}
@@ -360,7 +377,7 @@ class Slider extends Component {
             onTouchEnd={this.handleEnd}
             style={labelStyle}
           >
-            {this.props.bottomLables[key]}
+            {labels1[key]}
           </li>
         );
       }
@@ -384,7 +401,6 @@ class Slider extends Component {
           onTouchEnd={this.handleEnd}
           aria-valuemin={min}
           aria-valuemax={max}
-          aria-valuenow={value}
           aria-orientation={orientation}
         >
           <div className="rangeslider__fill" style={fillStyle} />
@@ -407,12 +423,12 @@ class Slider extends Component {
                 }}
                 className="rangeslider__handle-tooltip"
               >
-                <span>{this.handleFormat(value)}</span>
+                <span>{this.handleFormat(this.state.currentValue)}</span>
               </div>
             ) : null}
             <div className="rangeslider__handle-label">{handleLabel}</div>
           </div>
-          {labels ? this.renderLabels(bottomLabelItems) : null}
+          {labels1 ? this.renderLabels(labelItems1) : null}
         </div>
       </div>
     );
