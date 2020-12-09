@@ -1,6 +1,6 @@
 {
   "name": "react-rangeslider-dual-label",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "A lightweight react component that acts as a HTML5 input range slider polyfill",
   "main": "lib/index.js",
   "scripts": {
