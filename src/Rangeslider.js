@@ -134,6 +134,16 @@ class Slider extends Component {
 
     let value = this.position(e);
 
+    // get nearest credit point
+    let labels = this.props.labels;
+    var keys = [];
+    for (var k in labels) keys.push(k);
+    if (keys.length > 0) {
+      value = keys.reduce((a, b) => {
+        return Math.abs(b - value) < Math.abs(a - value) ? b : a;
+      });
+    }
+
     if (
       classList &&
       classList.contains("rangeslider__label-item") &&
@@ -410,7 +420,7 @@ class Slider extends Component {
                 <span>{this.handleFormat(value)}</span>
               </div>
             ) : null}
-            <div className="rangeslider__handle-label">{handleLabel}</div>
+            {/* <div className="rangeslider__handle-label">{handleLabel}</div> */}
           </div>
           {labels ? this.renderLabels(bottomLabelItems) : null}
         </div>

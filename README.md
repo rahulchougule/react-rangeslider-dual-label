@@ -45,6 +45,10 @@ $ yarn add react-rangeslider-dual-label
 />
 ```
 
+```changes (v 4.1)
+Mouse drag to nearest point available on slider - Top label
+```
+
 ## License
 
 MIT
